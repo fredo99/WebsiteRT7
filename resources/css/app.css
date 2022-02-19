@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tombol-login{
+    @apply bg-white border border-violet-300 text-gray-500 px-5 py-2 rounded mx-3;
+}
+
+.tombol-login:hover{
+    @apply bg-violet-600 text-white;
+}
+
+.tombol-navbar{
+    @apply text-gray-500 px-5 mx-2 py-3 rounded;
+}
+
+.tombol-navbar:hover{
+    @apply bg-violet-600 text-white;
+}
