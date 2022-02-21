@@ -17,4 +17,11 @@ class JimpitanController extends Controller
         
         return number_format($sum, 2);
     }
+
+    public function show($id){
+
+        return view('jimpitan', [
+            'jimpitan' => Jimpitan::findOrFail($id)
+        ]);
+    }
 }

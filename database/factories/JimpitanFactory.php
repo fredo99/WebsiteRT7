@@ -14,7 +14,7 @@ class JimpitanFactory extends Factory
         'tanggal' => $this->faker->date('Y-m-d', 'now'),
         'penyetor' => $this->faker->name(),
         'tidaksetor' => $this->faker->name(),
-        'jumlahsetoran' => $this->faker->numberBetween(0, 21000)
+        'jumlahsetoran' => $this->faker->numberBetween(15000, 21000)
         ];
     }
 }
