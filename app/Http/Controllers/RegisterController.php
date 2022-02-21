@@ -13,6 +13,8 @@ class RegisterController extends Controller
 
     public function store(Request $request){
 
+        // dd($request->all());
+
         $ValidatedData = $request->validate([
             'nama' => 'required|max:30',
             'email' => 'required|email:dns|unique:users',
@@ -21,9 +23,11 @@ class RegisterController extends Controller
 
         $ValidatedData['password'] = bcrypt($ValidatedData['password']);
 
+        // return $ValidatedData;
+
         User::create($ValidatedData);
 
         $request->session()->flash('success', 'Registration successfull! Please Login');
-        return view('Auth.login');
+        return redirect('Auth.login');
     }
 }
