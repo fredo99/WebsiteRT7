@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\JimpitanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Middleware\RoleAdmin;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,8 +20,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'home']);
-Route::get('/login', [LoginController::class, 'index']);
-// Route::post('/login', [LoginController::class, 'store'])->middleware(RoleAdmin::class);
-Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/PostRegister', [RegisterController::class, 'store']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
+
 Route::get('/jimpitan/{id}', [JimpitanController::class, 'show']);
+
+Route::post('/item', [ItemController::class, 'store']);
+Route::get('/item', [ItemController::class, 'index']);
+
+//Akses Dashboard Admin
+Route::group(['middleware' => ['auth', 'role:Admin'], 'prefix' => 'Admin'], function () {
+    Route::get('/Dashboard', [AdminController::class, 'index']);
+    Route::get('/Users', [AdminController::class, 'TabUser']);
+    Route::get('/Album', [AdminController::class, 'TabAlbum']);
+    Route::get('/Jimpitan', [AdminController::class, 'TabJimpitan']);
+});
+
+//Akses Dashboard User
+Route::group(['middleware' => ['auth', 'role:User'], 'prefix' => 'User'], function () {
+    Route::get('/Dashboard', [UserController::class, 'index']);
+    Route::get('/Jimpitan', [UserController::class, 'TabJimpitan']);
+});

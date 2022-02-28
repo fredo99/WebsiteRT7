@@ -10,7 +10,7 @@
     </div>
 
     <div class="container mx-auto my-20" id="keterangan">
-        <h1 class="font-bold sm:text-3xl md:text-4xl mb-5 ml-3">KETERANGAN RT 7 RW 9</h1>
+        <h1 class="font-bold sm:text-3xl md:text-4xl mb-5 mx-3">KETERANGAN RT 7 RW 9</h1>
         <div class="grid grid-flow-col">
             <div data-aos="fade-right" class="md:w-full">
                 <p class="text-justify mx-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae nesciunt nostrum repellendus! Magnam odio consequuntur iusto 
@@ -40,74 +40,35 @@
         </div>
     </div>
 
-    <div class="container mx-auto my-20" id="jimpitan">
-        <h1 class="font-bold md:text-4xl text-center mb-5">JIMPITAN</h1>
-            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 ml-3">
-                <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-                    <div class="overflow-hidden shadow-md sm:rounded-lg">
-                        <table class="min-w-full" id="tabel-jimpitan">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
-                                <tr>
-                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                        No
-                                    </th>
-                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                        Hari
-                                    </th>
-                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                        Tanggal
-                                    </th>
-                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                        Penyetor
-                                    </th>
-                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                        Tidak Setor
-                                    </th>
-                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                        Jumlah Setoran
-                                    </th>
-                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Product 1 -->
-                                {{-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        1
-                                    </td>
-                                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        Jumat, 18 Februari 2022
-                                    </td>
-                                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        suriyem
-                                    </td>
-                                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        Bpk.a, Bpk.b
-                                    </td>
-                                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        20.000
-                                    </td>
-                                    <td>
-                                      <a href="/"><button class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                          Detail
-                                      </button></a>
-                                    </td>
-                                </tr> --}}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        <strong class="md:text-2xl ml-3">Jumlah Uang Jimpitan Sebesar </strong>
+    <div class="container w-full mx-auto px-5">
+      <h1 class="font-bold sm:text-3xl md:text-4xl text-center py-3">JIMPITAN</h1>
+      <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+        <table id="tabel-jimpitan" class="stripe hover text-center" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+          <thead>
+            <tr>
+              <th data-priority="1">No</th>
+              <th data-priority="2">Hari</th>
+              <th data-priority="3">Tanggal</th>
+              <th data-priority="3">Penyetor</th>
+              <th data-priority="4">Tidak Setor</th>
+              <th data-priority="5">Jumlah Setoran</th>
+              <th data-priority="6">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>    
+        </table>
+      </div>
+      <div class="py-3 px-3">
+        <strong class="md:text-2xl">Jumlah Uang Jimpitan Sebesar </strong>
         <strong class="md:text-2xl text-red-500" id="jumlahjimpitan"></strong>
+      </div>
     </div>
 
     <div class="container mx-auto my-20" id="album">
-        <h1 class="font-bold md:text-4xl mb-5 ml-3">Kumpulan Foto</h1>
-        <div class="grid grid-rows-1 grid-cols-4 gap-2">
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg ml-3 mt-3">
+        <h1 class="font-bold md:text-4xl py-3 text-center font-sans">Kumpulan Foto</h1>
+        <div class="grid grid-rows-1 md:grid-cols-4 grid-cols-1 gap-2">
+            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
                 <img class="w-full rounded" src="https://picsum.photos/300/300/?blur" alt="Sunset in the mountains" width="300" height="300"> 
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
@@ -121,7 +82,7 @@
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
                 </div>
             </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg ml-3 mt-3">
+            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
                 <img class="w-full rounded" src="https://picsum.photos/seed/picsum/300/300" alt="Sunset in the mountains" width="300" height="300"> 
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
@@ -135,7 +96,7 @@
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
                 </div>
             </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg ml-3 mt-3">
+            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
                 <img class="w-full rounded" src="https://picsum.photos/300/300/?blur" alt="Sunset in the mountains" width="300" height="300"> 
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
@@ -149,7 +110,7 @@
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
                 </div>
             </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg ml-3 mt-3">
+            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
                 <img class="w-full rounded" src="https://picsum.photos/seed/picsum/300/300" alt="Sunset in the mountains" width="300" height="300"> 
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
@@ -163,7 +124,7 @@
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
                 </div>
             </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg ml-3 mt-3">
+            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
                 <img class="w-full rounded" src="https://picsum.photos/seed/picsum/300/300" alt="Sunset in the mountains" width="300" height="300"> 
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
@@ -177,7 +138,7 @@
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
                 </div>
             </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg ml-3 mt-3">
+            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
                 <img class="w-full rounded" src="https://picsum.photos/seed/picsum/300/300" alt="Sunset in the mountains" width="300" height="300"> 
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
@@ -191,7 +152,7 @@
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
                 </div>
             </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg ml-3 mt-3">
+            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
                 <img class="w-full rounded" src="https://picsum.photos/seed/picsum/300/300" alt="Sunset in the mountains" width="300" height="300"> 
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
@@ -205,7 +166,7 @@
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
                 </div>
             </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg ml-3 mt-3">
+            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
                 <img class="w-full rounded" src="https://picsum.photos/300/300/?blur" alt="Sunset in the mountains" width="300" height="300"> 
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">The Coldest Sunset</div>

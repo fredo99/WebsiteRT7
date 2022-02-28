@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckRole
 {
@@ -14,13 +15,17 @@ class CheckRole
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next,  ...$roles)
+    public function handle(Request $request, Closure $next, $roles)
     {
         // $roles = ['admin', 'user'];
 
-        if(!in_array(auth()->user()->roles, $roles)){
-            abort(403);
-        }
-        return $next($request);
+        // if(!in_array(auth()->user()->roles, $roles)){
+        //     abort(403);
+        // }
+        // return $next($request);
+        if (Auth::check() && Auth::user()->roles == $roles) {
+            return $next($request);
+          }
+         return redirect()->back()->with('RoleError', 'Role Anda tidak sesuai untuk mengakses halaman ini.');
     }
 }
