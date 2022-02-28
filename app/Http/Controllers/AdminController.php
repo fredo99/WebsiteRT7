@@ -25,6 +25,10 @@ class AdminController extends Controller
         return User::all();
     }
 
+    public function GetUserId($id){
+        return User::findOrFail($id);
+    }
+
     public function TabAlbum(){
         return view('Dashboard.Admin.album', ['active' => 'album']);
     }

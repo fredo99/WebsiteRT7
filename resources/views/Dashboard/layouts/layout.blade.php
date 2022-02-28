@@ -253,7 +253,7 @@
                                 "data" : null,
                                 "sortable": false,
                                 "render": function ( data, type, row ) {
-                                    return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium'><button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +' id='tbl-edit'>Edit</button><button class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +'>Delete</button></td>"
+                                    return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium'><button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +'>Edit</button><button class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +'>Delete</button></td>"
                                 },
                             }
                         ],
@@ -273,7 +273,7 @@
                     "data": data,
                     "responsive" : true,
                     "columns": [{
-                                "data" : "id",
+                                "data" : null,
                                 "render": function ( data, type, row ) {
                                 return i++;
                             },
@@ -297,10 +297,12 @@
                             },
                         },
                         {
-                            "data" : null,
+                            "data" : "id",
                             "sortable": false,
                             "render": function ( data, type, row ) {
-                                return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium'><button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +' id='tbl-edit'>Edit</button><button class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +'>Delete</button></td>"
+                                return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium'>" +
+                                 "<button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' onclick='modalHandler(true,"+ row.id +")' id='btn-edit-users'>Edit</button>" +
+                                 "<button class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='"+ row.id +"'>Delete</button></td>"
                             },
                         }
                     ],
@@ -309,6 +311,26 @@
             }
         });
     });
+</script>
+<script>
+    let modal = document.getElementById("modal-edit-users");
+    function modalHandler(val, id) {
+        // let id = $('#btn-edit-users').attr('data-id');
+        // console.log(id);
+        $.ajax({
+            url: '/api/getuserid/'+ id,
+            success: function(data){
+                console.log(data);
+                    $('#modal-edit-users').toggle('hidden');
+                    $('#name').val(data['name']);
+                    $('#role').val(data['roles']);
+                    $('#email').val(data['email']);
+            }
+        });
+    }
+    function closemodal() {
+        $('#modal-edit-users').toggle('hidden');
+    }
 </script>
 <script>
     $(document).ready(function(){
