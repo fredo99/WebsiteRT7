@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jimpitan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -11,14 +13,27 @@ class AdminController extends Controller
     }
 
     public function TabUser(){
-        return view('Dashboard.Admin.users', ['active' => 'users']);
+        $data = User::all();
+
+        return view('Dashboard.Admin.users', [
+            'active' => 'users',
+            'user' => $data
+        ]);
+    }
+
+    public function GetUsers(){
+        return User::all();
     }
 
     public function TabAlbum(){
-        return view('Dashboard.Admin.users', ['active' => 'album']);
+        return view('Dashboard.Admin.album', ['active' => 'album']);
     }
 
     public function TabJimpitan(){
-        return view('Dashboard.Admin.users', ['active' => 'jimpitan']);
+        $data = Jimpitan::all();
+        return view('Dashboard.Admin.jimpitan', [
+            'active' => 'jimpitan',
+            'jimpitan' => $data
+        ]);
     }
 }

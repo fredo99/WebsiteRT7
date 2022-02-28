@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JimpitanController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('jimpitan', [JimpitanController::class, 'index']);
 Route::get('sumjimpitan', [JimpitanController::class, 'SumJimpitan']);
 
+Route::get('users', [AdminController::class, 'GetUsers']);

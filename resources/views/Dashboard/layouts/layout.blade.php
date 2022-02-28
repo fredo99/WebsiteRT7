@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
   </head>
     <body>
       <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
@@ -190,9 +193,130 @@
         @yield('content-dashboard')
       </div>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
-  <script type="text/javascript" src="js/init-alpine.js"></script>
-  <script src="js/charts-lines.js" defer></script>
-  <script src="js/charts-pie.js" defer></script>
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script>
+    $(document).ready(function () {
+            let i = 1;
+            $.ajax({
+                url: '/api/jimpitan',
+                success: function(data){      
+                    $('#tbl-jimpitan').DataTable({
+                        "lengthChange": false,
+                        "dom": 'Bfrtip',
+                        "buttons": [
+                            'excel',
+                            'csv',
+                            'pdf'
+                        ],
+                        "data": data,
+                        "responsive" : true,
+                        "columns": [{
+                                    "data" : "id",
+                                    "render": function ( data, type, row ) {
+                                    return i++;
+                                },
+                            },
+                            {
+                                "data" : "tanggal",
+                                "render": function ( data, type, row ) {
+                                    return `${row.tanggal}`;
+                                },
+                            },
+                            {
+                                "data" : "penyetor",
+                                "render": function ( data, type, row ) {
+                                    return `${row.penyetor}`;
+                                },
+                            },
+                            {
+                                "data" : "tidaksetor",
+                                "render": function ( data, type, row ) {
+                                    return `${row.tidaksetor}`;
+                                },
+                            },
+                            {
+                                "data" : "jumlahsetoran",
+                                "render": function ( data, type, row ) {
+                                    return Intl.NumberFormat('en-US').format(`${row.jumlahsetoran}`);
+                                },
+                            },
+                            {
+                                "data" : null,
+                                "sortable": false,
+                                "render": function ( data, type, row ) {
+                                    return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium'><button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +' id='tbl-edit'>Edit</button><button class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +'>Delete</button></td>"
+                                },
+                            }
+                        ],
+                    });
+                    i=1;
+                }
+            });
+        });
+    </script>
+  <script>
+    $(document).ready(function () {
+        let i = 1;
+        $.ajax({
+            url: '/api/users',
+            success: function(data){      
+                $('#tbl-users').DataTable({
+                    "data": data,
+                    "responsive" : true,
+                    "columns": [{
+                                "data" : "id",
+                                "render": function ( data, type, row ) {
+                                return i++;
+                            },
+                        },
+                        {
+                            "data" : "name",
+                            "render": function ( data, type, row ) {
+                                return `${row.name}`;
+                            },
+                        },
+                        {
+                            "data" : "roles",
+                            "render": function ( data, type, row ) {
+                                return `${row.roles}`;
+                            },
+                        },
+                        {
+                            "data" : "email",
+                            "render": function ( data, type, row ) {
+                                return `${row.email}`;
+                            },
+                        },
+                        {
+                            "data" : null,
+                            "sortable": false,
+                            "render": function ( data, type, row ) {
+                                return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium'><button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +' id='tbl-edit'>Edit</button><button class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +'>Delete</button></td>"
+                            },
+                        }
+                    ],
+                });
+                i=1;
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+           $("#tbl-edit").click(function () {
+           $('#edit-modal').modal('show');
+           console.log('Berhasil');
+       });
+   });
+</script>
   </body>
 </html>
