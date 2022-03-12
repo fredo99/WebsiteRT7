@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\JimpitanController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,6 @@ Route::get('sumjimpitan', [JimpitanController::class, 'SumJimpitan']);
 
 Route::get('users', [AdminController::class, 'GetUsers']);
 Route::get('/edit/{id}', [AdminController::class, 'edit']);
+
+Route::get('album', [AlbumController::class, 'show']);
+

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJimpitansTable extends Migration
+class CreateJimpitanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateJimpitansTable extends Migration
      */
     public function up()
     {
-        Schema::create('jimpitans', function (Blueprint $table) {
+        Schema::create('jimpitan', function (Blueprint $table) {
             $table->id();
-            $table->date('hari');
             $table->date('tanggal');
             $table->string('penyetor');
             $table->string('tidaksetor');
@@ -31,6 +30,6 @@ class CreateJimpitansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jimpitans');
+        Schema::dropIfExists('jimpitan');
     }
 }

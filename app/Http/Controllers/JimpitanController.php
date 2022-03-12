@@ -13,7 +13,7 @@ class JimpitanController extends Controller
     }
 
     public function SumJimpitan(){
-        $sum = DB::table('jimpitans')->select('jumlahsetoran')->sum('jumlahsetoran');
+        $sum = DB::table('jimpitan')->select('jumlahsetoran')->sum('jumlahsetoran');
         
         return number_format($sum, 2);
     }

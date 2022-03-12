@@ -30,9 +30,6 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/jimpitan/{id}', [JimpitanController::class, 'show']);
 
-Route::post('/item', [ItemController::class, 'store']);
-Route::get('/item', [ItemController::class, 'index']);
-
 //Akses Dashboard Admin
 Route::group(['middleware' => ['auth', 'role:Admin'], 'prefix' => 'Admin'], function () {
     Route::get('/Dashboard', [AdminController::class, 'index']);
@@ -41,6 +38,7 @@ Route::group(['middleware' => ['auth', 'role:Admin'], 'prefix' => 'Admin'], func
     Route::get('/Users/update/{id}', [AdminController::class, 'update']);
     Route::get('/Users/delete/{id}', [AdminController::class, 'destroy']);
     Route::get('/Album', [AdminController::class, 'TabAlbum']);
+    Route::post('/Album/create', [AdminController::class, 'storeAlbum']);
     Route::get('/Jimpitan', [AdminController::class, 'TabJimpitan']);
 });
 

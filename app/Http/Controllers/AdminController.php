@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jimpitan;
 use App\Models\User;
+use App\Models\Album;
+use App\Models\Jimpitan;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -30,7 +31,8 @@ class AdminController extends Controller
     }
 
     public function TabAlbum(){
-        return view('Dashboard.Admin.album', ['active' => 'album']);
+        $data = Album::all();
+        return view('Dashboard.Admin.album', ['active' => 'album', $data]);
     }
 
     public function TabJimpitan(){
@@ -46,10 +48,13 @@ class AdminController extends Controller
             'name' => 'required | max:30 ',
             'roles' => 'required',
             'email' => 'required | email:dns',
+            'password' => 'required|min:5|max:255'
         ]);
 
+        $validate['password'] = bcrypt($validate['password']);
+
         User::create($validate);
-        return redirect('/Admin/Users');
+        // return session()->flash('success', 'Data Berhasil Ditambahkan');
     }
 
     public function update(Request $request, $id){
@@ -57,10 +62,29 @@ class AdminController extends Controller
         $data->name = $request->name;
         $data->roles = $request->role;
         $data->save();
+
+        // return session()->flash('success', 'Data Berhasil Diubah');
     }
 
     public function destroy($id){
         $data = User::findOrFail($id);
         $data->delete();
+
+        // return session()->flash('success', 'Data Berhasil Dihapus');
+    }
+
+    public function storeAlbum(Request $request){
+        $validate = $request->validate([
+            'judul' => 'required | max:30 ',
+            'keterangan' => 'required',
+            'image' => 'image | file |',
+        ]);
+
+        if($request->file('image')){
+            $validate['image'] = $request->file('image')->store('post-album');
+        }
+
+        Album::create($validate);
+        return back()->with('success', 'Data Berhasil Ditambahkan');
     }
 }

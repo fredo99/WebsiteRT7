@@ -10,8 +10,7 @@ class JimpitanFactory extends Factory
     public function definition()
     {
         return [
-        'hari' => $this->faker->dateTimeThisYear('now'),
-        'tanggal' => $this->faker->date('Y-m-d', 'now'),
+        'tanggal' => $this->faker->date('Y-m-d','now'),
         'penyetor' => $this->faker->name(),
         'tidaksetor' => $this->faker->name(),
         'jumlahsetoran' => $this->faker->numberBetween(15000, 21000)

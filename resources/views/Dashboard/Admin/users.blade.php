@@ -3,6 +3,12 @@
 @section('content-dashboard')
   <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
       <div class="container mx-auto px-6 py-8">
+        @if(session()->has('success'))   
+        <div id="alert-1" class="flex p-4 mb-4 bg-blue-100 rounded-lg dark:bg-blue-200" role="alert">
+          <svg class="flex-shrink-0 w-5 h-5 text-blue-700 dark:text-blue-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+          <div class="ml-3 text-sm font-medium text-blue-700 dark:text-blue-800">{{ session('success') }}</div>
+        </div>
+        @endif
           <h3 class="text-gray-700 text-3xl font-medium">Users</h3>
           <div class="flex flex-col mt-8">
               <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -86,19 +92,21 @@
 
 {{-- modal tambah user --}}
 <dh-component>
-    <form method="POST" action="/Admin/Users/create">
-        @csrf
+    {{-- <form method="POST" action="/Admin/Users/create">
+        @csrf --}}
         <div class="py-12 bg-gray-200 bg-opacity-70 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0 hidden" id="modal-tambah-users">
-            {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
+            <meta name="csrf-token" content="{{ csrf_token() }}">
             <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                 <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                     <h1 class="text-gray-800 font-bold text-lg text-center tracking-normal leading-tight mb-4">FORM TAMBAH USERS</h1>
-                    <label for="name" name="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Name</label>
-                    <input id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Masukkan Nama Anda" value=""/>
+                    <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Name</label>
+                    <input id="name1" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Masukkan Nama Anda" value=""/>
                     <label for="role" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Role</label>
-                    <input id="role" name="roles" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Masukkan Role Anda" value="" />
+                    <input id="role1" name="roles" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Masukkan Role Anda" value="" />
                     <label for="email" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Email</label>
-                    <input id="email" name="email" class="focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border disabled:bg-gray-300" placeholder="email@mail.com" value=""/>
+                    <input id="email1" name="email" class="focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border disabled:bg-gray-300" placeholder="email@mail.com" value=""/>
+                    <label for="password" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Password</label>
+                    <input type="password" id="password1" name="password" class="focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border disabled:bg-gray-300" placeholder="Masukkan Password Anda" value=""/>
                     <div class="flex items-center justify-start w-full mt-3">
                         <button type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm" id="btn-tambah-user">Submit</button>
                         <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" onclick="closemodaltambah()">Cancel</button>
@@ -113,7 +121,7 @@
                 </div>
             </div>
         </div>
-    </form>
+    {{-- </form> --}}
 </dh-component>
 
 @endsection

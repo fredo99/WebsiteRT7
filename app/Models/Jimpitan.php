@@ -9,8 +9,9 @@ class Jimpitan extends Model
 {
     use HasFactory;
 
+    protected $table = 'jimpitan';
+
     protected $fillable = [
-        'hari',
         'tanggal',
         'penyetor',
         'tidaksetor',

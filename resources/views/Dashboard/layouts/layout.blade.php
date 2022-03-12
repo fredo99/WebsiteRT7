@@ -202,7 +202,8 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-  <script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
     $(document).ready(function () {
         let i = 1;
         $.ajax({
@@ -258,17 +259,72 @@
 </script>
 <script>
     $(document).ready(function () {
-        show()
+        let i = 1;
+        $.ajax({
+            url: '/api/album',
+            success: function(data){      
+                $('#tbl-album').DataTable({
+                    "data": data,
+                    "responsive" : true,
+                    "columns": [{
+                                "data" : null,
+                                "render": function ( data, type, row ) {
+                                return i++;
+                            },
+                        },
+                        {
+                            "data" : "image",
+                            "render": function ( data, type, row ) {
+                                return '<img src="/storage/'+row.image+'">';
+                            },
+                        },
+                        {
+                            "data" : "judul",
+                            "render": function ( data, type, row ) {
+                                return `${row.judul}`;
+                            },
+                        },
+                        {
+                            "data" : "keterangan",
+                            "render": function ( data, type, row ) {
+                                return `${row.keterangan}`;
+                            },
+                        },
+                        {
+                            "data" : "id",
+                            "sortable": false,
+                            "render": function ( data, type, row ) {
+                                return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium'>" +
+                                    "<button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md'>Edit</button>" + 
+                                    "<button class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md'>Delete</button></td>"
+                            },
+                        }
+                    ],
+                });
+                i=1;
+            }
+        });
     });
 
+</script>
+<script>
+    function tambahalbum(){
+        $('#modal-tambah-album').toggle('hidden');
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        show()
+    });
     function show(){
         let i = 1;
             $.ajax({
                 url: '/api/users',
-                success: function(data){      
+                success: function (data){      
                     $('#tbl-users').DataTable({
                         "data": data,
                         "responsive" : true,
+                        "destroy": true,
                         "columns": [{
                                     "data" : null,
                                     "render": function ( data, type, row ) {
@@ -329,6 +385,11 @@
                                 console.log(data);
                                 $("#modal-edit-users").toggle('hidden');
                                 show();
+                                Swal.fire(
+                                'Data User',
+                                'Data Berhasil Diubah',
+                                'success'
+                                )
                             }
                         });
                     })
@@ -336,36 +397,52 @@
         });
     }
     function destroy(id){
-        $.ajax({
-            url: '/Admin/Users/delete/'+ id,
-            success: function(data){
-                alert('Data Berhasil Dihapus');
-                show();
+        Swal.fire({
+            title: 'Apakah Anda yakin ingin menhapus?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Ya, yakin',
+            }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/Admin/Users/delete/'+ id,
+                    success: function(data){
+                        show();
+                    }
+                });
+                Swal.fire('Data User Berhasil Dihapus', '', 'success')
+            } else if (result.isDenied) {
+                Swal.fire('Data Anda Batal Dihapus', '', 'info')
             }
-        });
+        })
     }
 
-    // $('#btn-tambah-user').on('click', function(){
-    //     $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     }
-    //     });
-    //     let name = $('#name').val();
-    //     let roles = $('#role').val();
-    //     let email = $('#email').val(); 
-    //     $.ajax({
-    //         url: '/Admin/Users/create',
-    //         type: 'POST',
-    //         data: {"name": name, "roles": roles, "email": email},
-    //         success: function(data){
-    //             console.log(name);
-    //             $('#modal-edit-users').toggle('hidden');
-    //             alert('Data Berhasil Ditambahkan');
-    //             show();
-    //         }
-    //     });
-    // });
+    $('#btn-tambah-user').on('click', function(){
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+        });
+        let name = $('#name1').val();
+        let roles = $('#role1').val();
+        let email = $('#email1').val(); 
+        let password = $('#password1').val(); 
+        $.ajax({
+            url: '/Admin/Users/create',
+            type: 'POST',
+            data: {"name": name, "roles": roles, "email": email, "password": password},
+            success: function(data){
+                $('#modal-tambah-users').toggle('hidden');
+                show();
+                Swal.fire(
+                'Data User',
+                'Data Berhasil Ditambahkan',
+                'success'
+                )
+            }
+        });
+    });
 
     function openmodaltambah(){
         $("#modal-tambah-users").toggle('hidden');
@@ -375,6 +452,9 @@
     }
     function closemodaltambah() {
         $("#modal-tambah-users").toggle('hidden');
+    }
+    function closemodalalbum(){
+        $('#modal-tambah-album').toggle('hidden');
     }
 </script>
 </body>

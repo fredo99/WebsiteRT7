@@ -178,12 +178,6 @@
                                 },
                             },
                             {
-                                "data" : "hari",
-                                "render": function ( data, type, row ) {
-                                    return `${row.hari}`;
-                                },
-                            },
-                            {
                                 "data" : "tanggal",
                                 "render": function ( data, type, row ) {
                                     return `${row.tanggal}`;

@@ -46,13 +46,12 @@
         <table id="tabel-jimpitan" class="stripe hover text-center" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
           <thead>
             <tr>
-              <th data-priority="1">No</th>
-              <th data-priority="2">Hari</th>
-              <th data-priority="3">Tanggal</th>
-              <th data-priority="3">Penyetor</th>
-              <th data-priority="4">Tidak Setor</th>
-              <th data-priority="5">Jumlah Setoran</th>
-              <th data-priority="6">Aksi</th>
+              <th>No</th>
+              <th>Tanggal</th>
+              <th>Penyetor</th>
+              <th>Tidak Setor</th>
+              <th>Jumlah Setoran</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -67,119 +66,27 @@
 
     <div class="container mx-auto my-20" id="album">
         <h1 class="font-bold md:text-4xl py-3 text-center font-sans">Kumpulan Foto</h1>
-        <div class="grid grid-rows-1 md:grid-cols-4 grid-cols-1 gap-2">
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
-                <img class="w-full rounded" src="https://picsum.photos/300/300/?blur" alt="Sunset in the mountains" width="300" height="300"> 
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                  <p class="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                  </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-                </div>
-            </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
-                <img class="w-full rounded" src="https://picsum.photos/seed/picsum/300/300" alt="Sunset in the mountains" width="300" height="300"> 
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                  <p class="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                  </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-                </div>
-            </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
-                <img class="w-full rounded" src="https://picsum.photos/300/300/?blur" alt="Sunset in the mountains" width="300" height="300"> 
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                  <p class="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                  </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-                </div>
-            </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
-                <img class="w-full rounded" src="https://picsum.photos/seed/picsum/300/300" alt="Sunset in the mountains" width="300" height="300"> 
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                  <p class="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                  </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-                </div>
-            </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
-                <img class="w-full rounded" src="https://picsum.photos/seed/picsum/300/300" alt="Sunset in the mountains" width="300" height="300"> 
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                  <p class="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                  </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-                </div>
-            </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
-                <img class="w-full rounded" src="https://picsum.photos/seed/picsum/300/300" alt="Sunset in the mountains" width="300" height="300"> 
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                  <p class="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                  </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-                </div>
-            </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
-                <img class="w-full rounded" src="https://picsum.photos/seed/picsum/300/300" alt="Sunset in the mountains" width="300" height="300"> 
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                  <p class="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                  </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-                </div>
-            </div>
-            <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
-                <img class="w-full rounded" src="https://picsum.photos/300/300/?blur" alt="Sunset in the mountains" width="300" height="300"> 
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                  <p class="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                  </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-                </div>
-            </div>
+        <div class="grid grid-rows-1 {{ $jumlahalbum <= 2 ? 'md:grid-cols-2' :'md:grid-cols-4'}} grid-cols-2 gap-2">
+          @foreach ($album as $a)
+          <div data-aos="zoom-in-up" class="rounded border border-gray-400 overflow-hidden shadow-lg mx-3 mt-3">
+            @if ($a->image != null)
+            <img class="w-full rounded" src="/storage/{{$a->image}}" alt="Sunset in the mountains" width="300" height="300"> 
+            @elseif ($a->image == null)
+            <img class="w-full rounded" src="https://picsum.photos/300/300/?blur" alt="Sunset in the mountains" width="300" height="300"> 
+            @endif
+              <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">{{$a->judul}}</div>
+                <p class="text-gray-700 text-base">
+                  {{$a->keterangan}}
+                </p>
+              </div>
+              <div class="px-6 pt-4 pb-2">
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+              </div>
+          </div>
+          @endforeach
         </div>
     </div>
 
