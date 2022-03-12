@@ -25,7 +25,7 @@ class AdminController extends Controller
         return User::all();
     }
 
-    public function GetUserId($id){
+    public function edit($id){
         return User::findOrFail($id);
     }
 
@@ -39,5 +39,28 @@ class AdminController extends Controller
             'active' => 'jimpitan',
             'jimpitan' => $data
         ]);
+    }
+
+    public function store(Request $request){
+        $validate = $request->validate([
+            'name' => 'required | max:30 ',
+            'roles' => 'required',
+            'email' => 'required | email:dns',
+        ]);
+
+        User::create($validate);
+        return redirect('/Admin/Users');
+    }
+
+    public function update(Request $request, $id){
+        $data = User::findOrFail($id);
+        $data->name = $request->name;
+        $data->roles = $request->role;
+        $data->save();
+    }
+
+    public function destroy($id){
+        $data = User::findOrFail($id);
+        $data->delete();
     }
 }

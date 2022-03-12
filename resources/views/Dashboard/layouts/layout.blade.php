@@ -197,7 +197,6 @@
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
@@ -205,104 +204,48 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
   <script>
     $(document).ready(function () {
-            let i = 1;
-            $.ajax({
-                url: '/api/jimpitan',
-                success: function(data){      
-                    $('#tbl-jimpitan').DataTable({
-                        "lengthChange": false,
-                        "dom": 'Bfrtip',
-                        "buttons": [
-                            'excel',
-                            'csv',
-                            'pdf'
-                        ],
-                        "data": data,
-                        "responsive" : true,
-                        "columns": [{
-                                    "data" : "id",
-                                    "render": function ( data, type, row ) {
-                                    return i++;
-                                },
-                            },
-                            {
-                                "data" : "tanggal",
-                                "render": function ( data, type, row ) {
-                                    return `${row.tanggal}`;
-                                },
-                            },
-                            {
-                                "data" : "penyetor",
-                                "render": function ( data, type, row ) {
-                                    return `${row.penyetor}`;
-                                },
-                            },
-                            {
-                                "data" : "tidaksetor",
-                                "render": function ( data, type, row ) {
-                                    return `${row.tidaksetor}`;
-                                },
-                            },
-                            {
-                                "data" : "jumlahsetoran",
-                                "render": function ( data, type, row ) {
-                                    return Intl.NumberFormat('en-US').format(`${row.jumlahsetoran}`);
-                                },
-                            },
-                            {
-                                "data" : null,
-                                "sortable": false,
-                                "render": function ( data, type, row ) {
-                                    return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium'><button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +'>Edit</button><button class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +'>Delete</button></td>"
-                                },
-                            }
-                        ],
-                    });
-                    i=1;
-                }
-            });
-        });
-    </script>
-  <script>
-    $(document).ready(function () {
         let i = 1;
         $.ajax({
-            url: '/api/users',
+            url: '/api/jimpitan',
             success: function(data){      
-                $('#tbl-users').DataTable({
+                $('#tbl-jimpitan').DataTable({
                     "data": data,
                     "responsive" : true,
                     "columns": [{
-                                "data" : null,
+                                "data" : "id",
                                 "render": function ( data, type, row ) {
                                 return i++;
                             },
                         },
                         {
-                            "data" : "name",
+                            "data" : "tanggal",
                             "render": function ( data, type, row ) {
-                                return `${row.name}`;
+                                return `${row.tanggal}`;
                             },
                         },
                         {
-                            "data" : "roles",
+                            "data" : "penyetor",
                             "render": function ( data, type, row ) {
-                                return `${row.roles}`;
+                                return `${row.penyetor}`;
                             },
                         },
                         {
-                            "data" : "email",
+                            "data" : "tidaksetor",
                             "render": function ( data, type, row ) {
-                                return `${row.email}`;
+                                return `${row.tidaksetor}`;
                             },
                         },
                         {
-                            "data" : "id",
+                            "data" : "jumlahsetoran",
+                            "render": function ( data, type, row ) {
+                                return Intl.NumberFormat('en-US').format(`${row.jumlahsetoran}`);
+                            },
+                        },
+                        {
+                            "data" : null,
                             "sortable": false,
                             "render": function ( data, type, row ) {
-                                return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium'>" +
-                                 "<button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' onclick='modalHandler(true,"+ row.id +")' id='btn-edit-users'>Edit</button>" +
-                                 "<button class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='"+ row.id +"'>Delete</button></td>"
+                                return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium'><button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +'>Edit</button><button class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' data-id='+ row.id +'>Delete</button></td>"
                             },
                         }
                     ],
@@ -311,34 +254,128 @@
             }
         });
     });
+
 </script>
 <script>
-    let modal = document.getElementById("modal-edit-users");
-    function modalHandler(val, id) {
-        // let id = $('#btn-edit-users').attr('data-id');
-        // console.log(id);
+    $(document).ready(function () {
+        show()
+    });
+
+    function show(){
+        let i = 1;
+            $.ajax({
+                url: '/api/users',
+                success: function(data){      
+                    $('#tbl-users').DataTable({
+                        "data": data,
+                        "responsive" : true,
+                        "columns": [{
+                                    "data" : null,
+                                    "render": function ( data, type, row ) {
+                                    return i++;
+                                },
+                            },
+                            {
+                                "data" : "name",
+                                "render": function ( data, type, row ) {
+                                    return `${row.name}`;
+                                },
+                            },
+                            {
+                                "data" : "roles",
+                                "render": function ( data, type, row ) {
+                                    return `${row.roles}`;
+                                },
+                            },
+                            {
+                                "data" : "email",
+                                "render": function ( data, type, row ) {
+                                    return `${row.email}`;
+                                },
+                            },
+                            {
+                                "data" : "id",
+                                "sortable": false,
+                                "render": function ( data, type, row ) {
+                                    return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium'>" +
+                                    "<button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' onclick='edit("+ row.id +")' id='btn-edit-users'>Edit</button>" +
+                                    "<button type='button' class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' onclick='destroy("+ row.id +")'>Delete</button></td>"
+                                },
+                            }
+                        ],
+                    });
+                i=1;
+            }
+        });
+    }
+    function edit(id){
+        let iduser = id;
         $.ajax({
-            url: '/api/getuserid/'+ id,
+            url: '/api/edit/'+ id,
             success: function(data){
-                console.log(data);
                     $('#modal-edit-users').toggle('hidden');
                     $('#name').val(data['name']);
                     $('#role').val(data['roles']);
                     $('#email').val(data['email']);
+                    $('#submit').on('click', function(iduser){
+                        let name = $("#name").val();
+                        let roles = $("#role").val();
+                        console.log(name);
+                        console.log(roles);
+                        $.ajax({
+                            url: '/Admin/Users/update/'+ id,
+                            data: {'name': name, 'role': roles},
+                            success: function(data){
+                                console.log(data);
+                                $("#modal-edit-users").toggle('hidden');
+                                show();
+                            }
+                        });
+                    })
             }
         });
     }
+    function destroy(id){
+        $.ajax({
+            url: '/Admin/Users/delete/'+ id,
+            success: function(data){
+                alert('Data Berhasil Dihapus');
+                show();
+            }
+        });
+    }
+
+    // $('#btn-tambah-user').on('click', function(){
+    //     $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    //     });
+    //     let name = $('#name').val();
+    //     let roles = $('#role').val();
+    //     let email = $('#email').val(); 
+    //     $.ajax({
+    //         url: '/Admin/Users/create',
+    //         type: 'POST',
+    //         data: {"name": name, "roles": roles, "email": email},
+    //         success: function(data){
+    //             console.log(name);
+    //             $('#modal-edit-users').toggle('hidden');
+    //             alert('Data Berhasil Ditambahkan');
+    //             show();
+    //         }
+    //     });
+    // });
+
+    function openmodaltambah(){
+        $("#modal-tambah-users").toggle('hidden');
+    }
     function closemodal() {
-        $('#modal-edit-users').toggle('hidden');
+        $("#modal-edit-users").toggle('hidden');
+    }
+    function closemodaltambah() {
+        $("#modal-tambah-users").toggle('hidden');
     }
 </script>
-<script>
-    $(document).ready(function(){
-           $("#tbl-edit").click(function () {
-           $('#edit-modal').modal('show');
-           console.log('Berhasil');
-       });
-   });
-</script>
-  </body>
+</body>
 </html>

@@ -37,6 +37,9 @@ Route::get('/item', [ItemController::class, 'index']);
 Route::group(['middleware' => ['auth', 'role:Admin'], 'prefix' => 'Admin'], function () {
     Route::get('/Dashboard', [AdminController::class, 'index']);
     Route::get('/Users', [AdminController::class, 'TabUser']);
+    Route::post('/Users/create', [AdminController::class, 'store']);
+    Route::get('/Users/update/{id}', [AdminController::class, 'update']);
+    Route::get('/Users/delete/{id}', [AdminController::class, 'destroy']);
     Route::get('/Album', [AdminController::class, 'TabAlbum']);
     Route::get('/Jimpitan', [AdminController::class, 'TabJimpitan']);
 });
