@@ -35,14 +35,19 @@ Route::group(['middleware' => ['auth', 'role:Admin'], 'prefix' => 'Admin'], func
     Route::get('/Dashboard', [AdminController::class, 'index']);
     Route::get('/Users', [AdminController::class, 'TabUser']);
     Route::post('/Users/create', [AdminController::class, 'store']);
+    Route::get('/Users/edit/{id}', [AdminController::class, 'edit']);
     Route::get('/Users/update/{id}', [AdminController::class, 'update']);
     Route::get('/Users/delete/{id}', [AdminController::class, 'destroy']);
     Route::get('/Album', [AdminController::class, 'TabAlbum']);
     Route::post('/Album/create', [AdminController::class, 'storeAlbum']);
-    Route::get('/Album/delete/{id}', [AdminController::class, 'destroyAlbum']);
     Route::get('/Album/edit/{id}', [AdminController::class, 'editAlbum']);
-    Route::get('/Album/update/{id}', [AdminController::class, 'updateAlbum']);
+    Route::post('/Album/update/{id}', [AdminController::class, 'updateAlbum']);
+    Route::get('/Album/delete/{id}', [AdminController::class, 'destroyAlbum']);
     Route::get('/Jimpitan', [AdminController::class, 'TabJimpitan']);
+    Route::get('/Jimpitan/create', [AdminController::class, 'storeJimpitan']);
+    Route::get('/Jimpitan/edit/{id}', [AdminController::class, 'editJimpitan']);
+    Route::post('/Jimpitan/update/{id}', [AdminController::class, 'updateJimpitan']);
+    Route::get('/Jimpitan/delete/{id}', [AdminController::class, 'destroyJimpitan']);
 });
 
 //Akses Dashboard User

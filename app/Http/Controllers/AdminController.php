@@ -104,16 +104,18 @@ class AdminController extends Controller
         $validate = $request->validate([
             'judul' => 'required | max:30 ',
             'keterangan' => 'required',
-            'image' => 'required| image | file |',
+            'image' => '| image | file |',
         ]);
 
-        if($data->image){
-            $oldimage = $request->old_image;
-            Storage::delete($oldimage);
+        if($request->file('image')){
+            if($request->oldImage){
+                Storage::delete($request->oldImage);
+            }
+           $validate['image'] = $request->file('image')->store('post-album');
         }
 
-        Album::updated($validate);
-        // return back()->with('success', 'Data Berhasil Ditambahkan');
+        Album::where('id', $id)->update($validate);
+        return back()->with('success', 'Data Berhasil Diubah');
     }
 
     public function editAlbum($id){
@@ -123,5 +125,7 @@ class AdminController extends Controller
             'data' => $data,
             'active' => 'album'
         ]);
+
+        // return $data;
     }
 }

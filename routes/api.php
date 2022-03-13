@@ -21,7 +21,6 @@ Route::get('jimpitan', [JimpitanController::class, 'index']);
 Route::get('sumjimpitan', [JimpitanController::class, 'SumJimpitan']);
 
 Route::get('users', [AdminController::class, 'GetUsers']);
-Route::get('/edit/{id}', [AdminController::class, 'edit']);
 
 Route::get('album', [AlbumController::class, 'show']);
 
