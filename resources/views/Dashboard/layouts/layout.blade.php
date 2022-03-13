@@ -259,6 +259,9 @@
 </script>
 <script>
     $(document).ready(function () {
+        showAlbum()
+    });
+    function showAlbum(){
         let i = 1;
         $.ajax({
             url: '/api/album',
@@ -266,6 +269,7 @@
                 $('#tbl-album').DataTable({
                     "data": data,
                     "responsive" : true,
+                    "destroy": true,
                     "columns": [{
                                 "data" : null,
                                 "render": function ( data, type, row ) {
@@ -275,8 +279,12 @@
                         {
                             "data" : "image",
                             "render": function ( data, type, row ) {
-                                return '<img src="/storage/'+row.image+'">';
-                            },
+                                if(row.image){
+                                    return '<img src="/storage/'+row.image+'">';
+                                }else{
+                                    return '<img src="https://picsum.photos/300/300/?blur">';
+                                }
+                            }
                         },
                         {
                             "data" : "judul",
@@ -294,9 +302,9 @@
                             "data" : "id",
                             "sortable": false,
                             "render": function ( data, type, row ) {
-                                return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium'>" +
-                                    "<button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md'>Edit</button>" + 
-                                    "<button class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md'>Delete</button></td>"
+                                return "<td class='px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200 text-sm leading-5 font-medium inline-block'>" +
+                                    "<a onclick='editAlbum("+row.id+")'><button type='button' class='border bg-green-500 hover:bg-green-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md'>Edit</button></a>" + 
+                                    "<button class='border bg-red-500 hover:bg-red-600 text-gray-800 text-lg hover:text-white px-4 py-2 rounded-md' onclick='deleteAlbum("+row.id+")'>Delete</button></td>"
                             },
                         }
                     ],
@@ -304,7 +312,64 @@
                 i=1;
             }
         });
-    });
+    }
+
+    function deleteAlbum(id){
+        Swal.fire({
+            title: 'Apakah Anda yakin ingin menhapus?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Ya, yakin',
+            }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+            $.ajax({
+                url: "/Admin/Album/delete/" + id,
+                data: "data",
+                success: function (data) {
+                    showAlbum();
+                }
+            });
+            Swal.fire('Data Album Berhasil Dihapus', '', 'success')
+            } else if (result.isDenied) {
+                Swal.fire('Data Anda Batal Dihapus', '', 'info')
+            }
+        });
+    }
+
+    function editAlbum(id){
+        let iduser = id;
+        location.replace('/Admin/Album/edit/' +id);
+        $.ajax({
+            url: "/Admin/Album/edit/" + id,
+            success: function(data){
+                console.log(data);
+                    $('#judul').val(data['judul']);
+                    $('#keterangan').val(data['keterangan']);
+                    // $('#previewImage').attr('src', '/storage/data['image']');
+                    $('#edit-album').on('click', function(iduser){
+                        let judul = $("#judul").val();
+                        let keterangan = $("#keterangan").val();
+                        let image = $("#image").val();
+                        // console.log(name);
+                        // console.log(roles);
+                        $.ajax({
+                            url: '/Admin/Album/update/'+ id,
+                            data: {'judul': judul, 'keterangan': keterangan, 'image': image},
+                            success: function(data){
+                                console.log(data);
+                                // show();
+                                Swal.fire(
+                                'Data User',
+                                'Data Berhasil Diubah',
+                                'success'
+                                )
+                            }
+                        });
+                    })
+            }
+        });
+    }
 
 </script>
 <script>

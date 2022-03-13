@@ -73,11 +73,20 @@
                 <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                     <h1 class="text-gray-800 font-bold text-lg text-center tracking-normal leading-tight mb-4">FORM TAMBAH ALBUM</h1>
                     <label for="judul" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Judul</label>
-                    <input id="judul" name="judul" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Masukkan Judul Anda" value=""/>
+                    <input id="judul" name="judul" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Masukkan Judul Anda" value="" required/>
+                    @error('judul')
+                    <p class="text-sm text-red-500 ml-3">{{ $message }}</p>
+                    @enderror
                     <label for="keterangan" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Keterangan</label>
-                    <input id="keterangan" name="keterangan" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Masukkan Keterangan Anda" value="" />
+                    <input id="keterangan" name="keterangan" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Masukkan Keterangan Anda" value="" required/>
+                    @error('keterangan')
+                    <p class="text-sm text-red-500 ml-3">{{ $message }}</p>
+                    @enderror
                     <label for="image" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Image</label>
-                    <input class="form-control block w-full text-base font-normal text-gray-700 g-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="image" name="image">
+                    <input class="form-control block w-full text-base font-normal text-gray-700 g-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="image" name="image" required>
+                    @error('image')
+                    <p class="text-sm text-red-500 ml-3">{{ $message }}</p>
+                    @enderror
                     <div class="flex items-center justify-start w-full mt-3">
                         <button type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
                         <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" onclick="closemodalalbum()">Cancel</button>

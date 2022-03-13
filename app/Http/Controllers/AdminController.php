@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Album;
 use App\Models\Jimpitan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -77,7 +78,7 @@ class AdminController extends Controller
         $validate = $request->validate([
             'judul' => 'required | max:30 ',
             'keterangan' => 'required',
-            'image' => 'image | file |',
+            'image' => 'required| image | file |',
         ]);
 
         if($request->file('image')){
@@ -86,5 +87,41 @@ class AdminController extends Controller
 
         Album::create($validate);
         return back()->with('success', 'Data Berhasil Ditambahkan');
+    }
+
+    public function destroyAlbum($id){
+        $data = Album::findOrFail($id);
+
+        if($data->image){
+            Storage::delete($data->image);
+        }
+        $data->delete();
+    }
+
+    public function updateAlbum(Request $request, $id){
+        $data = Album::findOrFail($id);
+
+        $validate = $request->validate([
+            'judul' => 'required | max:30 ',
+            'keterangan' => 'required',
+            'image' => 'required| image | file |',
+        ]);
+
+        if($data->image){
+            $oldimage = $request->old_image;
+            Storage::delete($oldimage);
+        }
+
+        Album::updated($validate);
+        // return back()->with('success', 'Data Berhasil Ditambahkan');
+    }
+
+    public function editAlbum($id){
+        $data = Album::findOrFail($id);
+
+        return view('Dashboard.Admin.editAlbum', [
+            'data' => $data,
+            'active' => 'album'
+        ]);
     }
 }
