@@ -33,13 +33,13 @@
                           </div>
 
                           <div class="mx-5">
-                              <h4 class="text-2xl font-semibold text-gray-700">8,282</h4>
-                              <div class="text-gray-500">New Users</div>
+                              <h4 class="text-2xl font-semibold text-gray-700">Rp.{{ $jumlah_hutang }}</h4>
+                              <div class="text-gray-500">Jumlah Hutang</div>
                           </div>
                       </div>
                   </div>
 
-                  <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
+                  {{-- <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
                       <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
                           <div class="p-3 rounded-full bg-orange-600 bg-opacity-75">
                               <svg class="h-8 w-8 text-white" viewBox="0 0 28 28" fill="none"
@@ -82,7 +82,7 @@
                           </div>
                       </div>
                   </div>
-              </div>
+              </div> --}}
           </div>
 
           <div class="mt-8">
