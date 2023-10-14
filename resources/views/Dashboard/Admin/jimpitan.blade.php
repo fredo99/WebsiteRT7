@@ -75,11 +75,15 @@
                     <p class="text-sm text-red-500 ml-3">{{ $message }}</p>
                     @enderror
                     <label for="tidaksetor" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Tidak Setor</label>
-                    <input id="tidaksetor" name="tidaksetor" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Masukkan tidaksetor Anda" value="" required/>
+                    <select class="selectpicker mb-5 mt-2" name="tidaksetor[]" style="width: 100%" data-allow-clear="false" multiple="multiple">
+                    @foreach ($users as $u)
+                    <option value="{{ $u->id }}">{{ $u->name }}</option>
+                    @endforeach
+                    </select>
                     @error('tidaksetor')
                     <p class="text-sm text-red-500 ml-3">{{ $message }}</p>
                     @enderror
-                    <label for="jumlahsetoran" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Jumlah Setoran</label>
+                    <label for="jumlahsetoran" class="text-gray-800 text-sm font-bold leading-tight tracking-normal mt-5">Jumlah Setoran</label>
                     <input class="form-control block w-full text-base font-normal text-gray-700 g-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Masukkan Jumlah Setoran Anda" type="number" id="jumlahsetoran" name="jumlahsetoran" required>
                     @error('image')
                     <p class="text-sm text-red-500 ml-3">{{ $message }}</p>

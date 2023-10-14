@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth', 'role:Admin'], 'prefix' => 'Admin'], func
     Route::post('/Album/update/{id}', [AdminController::class, 'updateAlbum']);
     Route::get('/Album/delete/{id}', [AdminController::class, 'destroyAlbum']);
     Route::get('/Jimpitan', [AdminController::class, 'TabJimpitan']);
-    Route::get('/Jimpitan/create', [AdminController::class, 'storeJimpitan']);
+    Route::post('/Jimpitan/create', [AdminController::class, 'storeJimpitan']);
     Route::get('/Jimpitan/edit/{id}', [AdminController::class, 'editJimpitan']);
     Route::post('/Jimpitan/update/{id}', [AdminController::class, 'updateJimpitan']);
     Route::get('/Jimpitan/delete/{id}', [AdminController::class, 'destroyJimpitan']);

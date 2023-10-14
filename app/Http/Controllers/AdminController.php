@@ -64,11 +64,34 @@ class AdminController extends Controller
 
     public function TabJimpitan()
     {
+        $users = DB::table('users')
+            ->select('id', 'name')
+            ->where('roles', '=', 'User')
+            ->get();
+
         $data = Jimpitan::all();
         return view('Dashboard.Admin.jimpitan', [
             'active' => 'jimpitan',
-            'jimpitan' => $data
+            'jimpitan' => $data,
+            'users'    => $users
         ]);
+    }
+
+    public function storeJimpitan(Request $request)
+    {
+        $validate = $request->validate([
+            'tanggal' => 'required',
+            'tidaksetor' => 'required',
+            'jumlahsetoran' => 'required'
+        ]);
+        // foreach ($request->tidaksetor as $tidaksetor) {
+        // $data = $request->all();
+        $validate['penyetor'] = auth()->user()->name;
+        $validate['tidaksetor'] = implode(',', $request->tidaksetor);
+        Jimpitan::create($validate);
+        // }
+
+        return redirect('/Admin/Jimpitan');
     }
 
     public function store(Request $request)
@@ -80,9 +103,17 @@ class AdminController extends Controller
             'password' => 'required|min:5|max:255'
         ]);
 
-        $validate['password'] = bcrypt($validate['password']);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->roles = $request->roles;
+        $user->password = bcrypt($validate['password']);
+        $user->hutang_jimpitan = 0;
+        $user->save();
 
-        User::create($validate);
+        // $validate['password'] = bcrypt($validate['password']);
+
+        // User::create($validate);
         // return session()->flash('success', 'Data Berhasil Ditambahkan');
     }
 
