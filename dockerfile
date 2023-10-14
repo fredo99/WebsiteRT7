@@ -1,4 +1,4 @@
-FROM php:7.4
+FROM php:latest
 
 WORKDIR /var/www/html
 RUN apt-get update \
