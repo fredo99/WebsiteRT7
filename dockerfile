@@ -1,21 +1,11 @@
-FROM php:latest
+FROM php:7.4
 
 WORKDIR /var/www/html
-RUN apt-get update \
-    && apt-get install -y \
-        libzip-dev \
-        unzip \
-        git \
-    && docker-php-ext-install zip pdo_mysql
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
+# RUN docker-php-ext-install extension_name
 COPY . /var/www/html
 
-RUN composer install --no-scripts --no-autoloader \
-    && composer dump-autoload --optimize
-
-RUN php artisan key:generate
+RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
 
